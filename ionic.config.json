@@ -1,0 +1,7 @@
+{
+  "name": "meat_now",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

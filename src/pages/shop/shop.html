@@ -1,0 +1,104 @@
+<ion-content >
+  <ion-grid style="margin-top: 5%; margin-bottom:5%" > 
+    <ion-row padding>
+      <div style="width: 60%; float: left; height: 100px; vertical-align: middle">
+        <img src="assets/logo1.png" alt="" width="80%" style="max-width: 200px">
+      </div>
+      <div style="width:40%; float: right; height: 100px; vertical-align: middle;text-align: right;padding-top: 30px" (click)="checkout()">
+          <ion-icon name="cart" isActive="false" style="color:#fff;font-size: 200%;"></ion-icon> 
+          <ion-badge color="danger" style="margin-left:-7px;">{{cart_total}}</ion-badge>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-grid style="background-color:rgba(255,255,255,0.7)">
+        <ion-row>
+          <ion-col col-9>
+              <h2 style="margin-top:5px; font-weight: bold; color:#be0a27" >{{ q.name}}</h2>
+              <p style="width:100%"> 
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 0"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 1"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 2"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 3"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 4"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 4"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 3"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 2"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 1"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 5"></ion-icon>
+                  <!-- <ion-icon color="danger" name="star"></ion-icon>
+                  <ion-icon color="danger" name="star"></ion-icon>
+                  <ion-icon color="danger" name="star-outline"></ion-icon>
+                  <ion-icon color="danger" name="star-outline"></ion-icon>
+                  <ion-icon color="danger" name="star-outline"></ion-icon> -->
+                  <br>
+                <small>
+                    {{q.address}},
+                    {{q.city}}, {{q.zip}}<br>
+                    {{q.short_info}}
+                </small>
+          </ion-col>
+          <ion-col col-3>
+            <img src="{{q.logo}}" alt="">
+            <p><small>Reviews: {{q.reviews}}</small></p>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+    </ion-row>  
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-select placeholder="" [(ngModel)]="category" (ionChange)="getSub()">
+              <ion-option value="{{a.value}}" *ngFor="let a of cats">{{a.type}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+          <ion-item *ngIf="subcats?.length > 0">
+              <ion-select placeholder="Select meat type" [(ngModel)]="subCategory" (ionChange)="getProducts()">
+                  <ion-option value="{{b.value}}" *ngFor="let b of subcats">{{b.type}}</ion-option>
+              </ion-select>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let a of products; let i = index">
+        <ion-card text-center>
+          <ion-card-content>
+            <img src="{{a.image}}" alt="">
+            <h3><b>{{a.name}}</b></h3>
+            <p>
+                <ion-icon color="danger" name="star" *ngIf="a.rating > 0"></ion-icon>
+                <ion-icon color="danger" name="star" *ngIf="a.rating > 1"></ion-icon>
+                <ion-icon color="danger" name="star" *ngIf="a.rating > 2"></ion-icon>
+                <ion-icon color="danger" name="star" *ngIf="a.rating > 3"></ion-icon>
+                <ion-icon color="danger" name="star" *ngIf="a.rating > 4"></ion-icon>
+                <ion-icon color="danger" name="star-outline" *ngIf="a.rating < 5"></ion-icon>
+                <ion-icon color="danger" name="star-outline" *ngIf="a.rating < 4"></ion-icon>
+                <ion-icon color="danger" name="star-outline" *ngIf="a.rating < 3"></ion-icon>
+                <ion-icon color="danger" name="star-outline" *ngIf="a.rating < 2"></ion-icon>
+                <ion-icon color="danger" name="star-outline" *ngIf="a.rating < 1"></ion-icon>
+            </p>
+            <p><b>Price: £{{a.price}} </b></p>
+            <ion-select [(ngModel)]="quantity[i]" >
+                <ion-option value="1" selected>1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+                <ion-option value="7">7</ion-option>
+                <ion-option value="8">8</ion-option>
+                <ion-option value="9">9</ion-option>
+                <ion-option value="10">10</ion-option>
+            </ion-select>
+            <button ion-button block color="danger" (click)="addtocart(a.id,i)">Add to cart</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

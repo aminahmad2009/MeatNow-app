@@ -1,0 +1,72 @@
+<ion-content padding>
+  <div style="margin-top: 5%; margin-bottom:5%">
+    <ion-grid>
+      <ion-row>
+        <div style="width: 60%; float: left; height: 100px; vertical-align: middle">
+          <img src="assets/logo1.png" alt="" width="80%" style="max-width: 200px">
+        </div>
+        <div style="width:40%; float: right; height: 100px; vertical-align: middle;text-align: right;padding-top: 30px" (click)="checkout()">
+            <ion-icon name="cart" isActive="false" style="color:#fff;font-size: 200%;"></ion-icon> 
+            <ion-badge color="danger" style="margin-left:-7px;">{{cart_total}}</ion-badge>
+        </div>
+      </ion-row>
+      
+      <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input type="text" placeholder="Postcode..." [(ngModel)]="location" (ionChange)="getList()"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-select [(ngModel)]="category" placeholder="All Meat Types" (ionChange)="getList()">
+                  <ion-option value="{{d.value}}" *ngFor="let d of categories">{{d.type}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item *ngIf="sub_cats?.length > 0">
+                <ion-select [(ngModel)]="meatType" placeholder="Select Category" (ionChange)="getList()">
+                    <ion-option value="{{a.value}}" *ngFor="let a of sub_cats">{{a.type}}</ion-option>
+                </ion-select>
+              </ion-item>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+      <ion-card *ngFor="let q of shops" (click)="shop(q.id)">
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-3>
+              <img src="{{q.logo}}" alt="">
+            </ion-col>
+            <ion-col col-9>
+              <h2 style="margin-top:5px; font-weight: bold">{{q.name}}</h2>
+              <p style="width:100%"> 
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 0"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 1"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 2"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 3"></ion-icon>
+                  <ion-icon color="danger" name="star" *ngIf="q.rate > 4"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 4"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 3"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 2"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 1"></ion-icon>
+                  <ion-icon color="danger" name="star-outline" *ngIf="q.rate < 5"></ion-icon>
+              </p>
+              <p>
+                <small>
+                  {{q.menu}}
+                </small><br>
+                <small>
+                    <span style="color: #e6221d">{{q.address}}, {{q.city}}, {{q.zip }} </span>
+                </small>
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+      
+  </div>
+</ion-content>

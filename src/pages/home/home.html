@@ -1,0 +1,55 @@
+<ion-content padding>
+
+  <div text-center style="margin-top: 20%; margin-bottom:20%">
+    <img src="assets/logo1.png" alt="" width="50%">
+  </div>
+ <ion-grid  style=" margin-bottom:20%">
+   <ion-row>
+     <ion-col>
+       <ion-list>
+         <ion-item>
+            <ion-input type="text" placeholder="Enter your post code..." [(ngModel)] = "location"></ion-input>
+         </ion-item>
+           <button ion-button block color="danger" (click)="list()">Find Now</button>
+       </ion-list>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+ <ion-grid style="color:#fff; text-align:center">
+   <ion-row>
+     <ion-col>
+       <h3>How it works?</h3>
+     </ion-col>
+   </ion-row>
+   <ion-row>
+      <ion-col>
+        <img src="assets/web.png" alt="">
+        <p>Search by location</p>
+      </ion-col>
+      <ion-col>
+        <img src="assets/arrow_down.png" alt="">
+      </ion-col>
+      <ion-col>
+        <img src="assets/shop.png" alt="">
+        <p>Choose shop</p>
+      </ion-col>
+      <ion-col>
+        <img src="assets/arrow_up.png" alt="">
+      </ion-col>
+      <ion-col>
+        <img src="assets/money.png" alt="">
+        <p>Make payment</p>
+      </ion-col>
+      <ion-col>
+        <img src="assets/arrow_down.png" alt="">
+      </ion-col>
+      <ion-col>
+        <img src="assets/deliver.png" alt="">
+        <p>Get delivery</p>
+      </ion-col>
+   </ion-row>
+ </ion-grid>
+ <div text-center style="bottom:0px; color: #fff; position: fixed;">
+  <small>ID: {{user_id}}</small>
+ </div>
+</ion-content>
